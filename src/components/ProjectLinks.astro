@@ -9,7 +9,7 @@ interface Props {
 const { project } = Astro.props;
 // Each key in project.links needs a matching label in site.labels.
 const links = Object.entries(project.links).flatMap(([key, href]) =>
-  href ? [{ href, label: labels[key] ?? key, external: key === "demo" }] : [],
+  href ? [{ href, label: labels[key] ?? key, external: key === "demo" || key === "play" }] : [],
 );
 ---
 

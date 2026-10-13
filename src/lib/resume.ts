@@ -21,7 +21,7 @@ export interface Project {
   context?: string;
   period?: string;
   stack: string[];
-  /** Keyed by label name in site.labels (demo, repo, frontend, backend). */
+  /** Keyed by label name in site.labels (demo, play, repo, frontend, backend). */
   links: Partial<Record<string, string>>;
   bullets?: string[];
   /** Files in src/assets/projects/. */
