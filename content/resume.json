@@ -13,6 +13,7 @@
     "linkedin": "https://www.linkedin.com/in/tanakrit-roongtanapirom"
   },
   "resumePdf": "/resume.pdf",
+  "headshot": { "file": "headshot.jpg", "alt": "Photo of Tanakrit Roongtanapirom" },
   "site": {
     "_note": "Page title, meta description and interface labels. Wording only, no claims.",
     "title": "Tanakrit (Euro) Roongtanapirom · Computer Engineering, Chulalongkorn University",
@@ -36,7 +37,6 @@
       "demo": "Live demo",
       "repo": "Source",
       "frontend": "Frontend repo",
-      "screenshotNote": "Screenshots from a local run with the repo's sample data.",
       "backend": "Backend repo",
       "gpax": "GPAX",
       "coursework": "Coursework",
@@ -81,6 +81,7 @@
         "frontend": "https://github.com/meephuu/togethr-frontend",
         "backend": "https://github.com/DiewKoyKid/DeawKoyKid-Backend"
       },
+      "imagesNote": "Screenshots from a local run with the repo's sample data.",
       "images": [
         {
           "file": "togethr-provider-dashboard.png",
@@ -124,6 +125,13 @@
       "bullets": [
         "Designed a staged rollout (backtest → paper trading → small capped live account) for four pairs on Binance TH; currently paper trading on a dedicated always-on PC.",
         "Compared MA-crossover, RSI and Donchian strategies in backtests with fees, slippage and a walk-forward overfitting check, and chose MA 10/200 on 4-hour candles."
+      ],
+      "images": [
+        {
+          "file": "trading-bot-backtest-equity.png",
+          "caption": "Backtest of MA 10/200 vs buy & hold on BTCUSDT 4h, Jan 2024 – Oct 2026 (out of sample, fees and slippage included): +97% vs +101%, worst drop −32% vs −53%.",
+          "alt": "Line chart of return since start for the MA 10/200 strategy and for buy and hold on BTCUSDT, January 2024 to October 2026. Buy and hold climbs higher and falls further; the strategy stays flatter and ends just below it."
+        }
       ]
     },
     {
@@ -133,6 +141,7 @@
       "title": "gb-emu",
       "tagline": "Game Boy / Game Boy Color emulator in Rust and WebAssembly, passing 96/100 Mooneye accuracy tests",
       "stack": ["Rust", "WebAssembly"],
+      "thumbnail": { "file": "gb-emu.png", "alt": "gb-emu running Link Pong against the CPU in the browser." },
       "links": { "demo": "https://tanakriteuro.github.io/gb-emu/", "repo": "https://github.com/TanakritEuro/gb-emu" }
     },
     {
@@ -151,6 +160,7 @@
       "title": "AlgoViz",
       "tagline": "Visualizer for 10 pathfinding and sorting algorithms",
       "stack": ["TypeScript", "React"],
+      "thumbnail": { "file": "algoviz.png", "alt": "AlgoViz after a breadth-first search through a generated maze, with the shortest path highlighted." },
       "links": { "demo": "https://algoviz-tau.vercel.app/", "repo": "https://github.com/TanakritEuro/algoviz" }
     },
     {
@@ -169,6 +179,7 @@
       "title": "AutomataLab",
       "tagline": "Cellular-automata playground rendered as generative art",
       "stack": ["TypeScript"],
+      "thumbnail": { "file": "automatalab.png", "alt": "AutomataLab drawing elementary cellular automaton Rule 30 from a single cell." },
       "links": { "demo": "https://automatalab-opal.vercel.app", "repo": "https://github.com/TanakritEuro/AutomataLab" }
     },
     {
@@ -186,7 +197,14 @@
     {
       "title": "Real-time video capture on an FPGA",
       "course": "Hardware Synthesis Lab · team of two",
-      "description": "In Verilog on a Basys 3 (Artix-7), configured an OV7670 camera through a hand-written SCCB (I²C-like) bus master, buffered frames in dual-port BRAM bridging the camera and VGA clock domains, and output 640×480 @ 60 Hz video with switchable greyscale, invert and threshold filters."
+      "description": "In Verilog on a Basys 3 (Artix-7), configured an OV7670 camera through a hand-written SCCB (I²C-like) bus master, buffered frames in dual-port BRAM bridging the camera and VGA clock domains, and output 640×480 @ 60 Hz video with switchable greyscale, invert and threshold filters.",
+      "images": [
+        {
+          "file": "fpga-block-diagram.png",
+          "caption": "Top-level block diagram from the project report: three clock domains joined by a dual-port BRAM frame buffer.",
+          "alt": "Block diagram in three clock domains. 100 MHz: cam_ctrl configures the OV7670 camera over SCCB, and an MMCM makes the 25 MHz clock. Camera clock: pixel_capture turns the RGB565 stream into RGB444 and writes the frame_buffer. 25 MHz: vga_sync reads the frame buffer, img_filter applies the selected filter, and the result goes to the VGA monitor."
+        }
+      ]
     },
     {
       "title": "Linux kernel modules",

@@ -3,6 +3,13 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import data from "../../content/resume.json";
 
+/** An image in src/assets/ (see src/lib/images.ts). */
+export interface Picture {
+  file: string;
+  alt: string;
+  caption?: string;
+}
+
 export type ProjectGroup = "own" | "daily-tool" | "showcase";
 
 export interface Project {
@@ -18,7 +25,11 @@ export interface Project {
   links: Partial<Record<string, string>>;
   bullets?: string[];
   /** Files in src/assets/projects/. */
-  images?: { file: string; caption: string; alt: string }[];
+  images?: Picture[];
+  /** Small print under the images, e.g. where screenshots came from. */
+  imagesNote?: string;
+  /** Small image on showcase cards, from src/assets/projects/. */
+  thumbnail?: Picture;
 }
 
 export interface Resume {
@@ -32,6 +43,8 @@ export interface Resume {
   siteSummary?: string;
   contact: { email: string; github: string; linkedin: string };
   resumePdf: string;
+  /** File in src/assets/images/. */
+  headshot?: Picture;
   site: { title: string; description: string; labels: Record<string, string> };
   education: {
     school: string;
@@ -43,7 +56,7 @@ export interface Resume {
   }[];
   projects: Project[];
   showcaseNote: string;
-  courseProjects: { title: string; course: string; description: string }[];
+  courseProjects: { title: string; course: string; description: string; images?: Picture[] }[];
   skills: { group: string; items: string[] }[];
 }
 

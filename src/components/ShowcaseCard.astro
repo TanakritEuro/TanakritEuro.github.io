@@ -1,18 +1,35 @@
 ---
+import { Image } from "astro:assets";
 import BuiltWith from "./BuiltWith.astro";
 import ProjectLinks from "./ProjectLinks.astro";
 import type { Project } from "../lib/resume";
+import { image } from "../lib/images";
 
 interface Props {
   project: Project;
 }
 
 const { project } = Astro.props;
+const thumb = project.thumbnail && { ...project.thumbnail, src: image("projects", project.thumbnail.file) };
 ---
 
 <article class="card" id={project.id}>
-  <h4 class="title">{project.title}</h4>
-  {project.tagline && <p class="tagline">{project.tagline}</p>}
+  <div class="head">
+    <h4 class="title">{project.title}</h4>
+    {project.tagline && <p class="tagline">{project.tagline}</p>}
+    {
+      thumb && (
+        <Image
+          class="thumb no-print"
+          src={thumb.src}
+          alt={thumb.alt}
+          widths={[160, 320]}
+          sizes="8rem"
+          loading="lazy"
+        />
+      )
+    }
+  </div>
   <ul class="stack" aria-label={`${project.title} stack`}>
     {project.stack.map((s) => <li>{s}</li>)}
   </ul>
@@ -33,12 +50,42 @@ const { project } = Astro.props;
     background: var(--surface);
   }
 
+  /* Title and thumbnail share the top row; the tagline sits beside the
+     thumbnail on wide cards and spans the card on narrow ones. */
+  .head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 0.9rem;
+  }
+
+  .title,
+  .tagline {
+    grid-column: 1;
+  }
+
+  .thumb {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+
   .title {
     font-size: 1.15rem;
   }
 
   .tagline {
+    margin-top: 0.5rem;
     font-size: 0.9688rem;
+  }
+
+  .thumb {
+    flex: none;
+    width: 8rem;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
   }
 
   .foot {
@@ -51,12 +98,27 @@ const { project } = Astro.props;
     padding-top: 0.35rem;
   }
 
+  @media (max-width: 30rem) {
+    .thumb {
+      grid-row: 1;
+      width: 6rem;
+    }
+
+    .tagline {
+      grid-column: 1 / -1;
+    }
+  }
+
   @media print {
     .card {
       display: block;
       padding: 0;
       border: 0;
       background: none;
+    }
+
+    .head {
+      display: inline;
     }
 
     .title {
@@ -67,6 +129,7 @@ const { project } = Astro.props;
     .tagline {
       display: inline;
       font-size: 9.5pt;
+      margin: 0;
     }
 
     .tagline::before {

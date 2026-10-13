@@ -1,45 +1,38 @@
 ---
-import type { ImageMetadata } from "astro";
 import { Image } from "astro:assets";
-import type { Project } from "../lib/resume";
-import { labels } from "../lib/resume";
+import type { Picture } from "../lib/resume";
+import { image } from "../lib/images";
 
 interface Props {
-  images: NonNullable<Project["images"]>;
+  images: Picture[];
+  note?: string;
 }
 
-const { images } = Astro.props;
-const files = import.meta.glob<{ default: ImageMetadata }>("/src/assets/projects/*.{png,jpg,jpeg,webp}", {
-  eager: true,
-});
-
-const shots = images.map((img) => {
-  const mod = files[`/src/assets/projects/${img.file}`];
-  if (!mod) throw new Error(`Missing screenshot src/assets/projects/${img.file}`);
-  return { ...img, src: mod.default };
-});
+const { images, note } = Astro.props;
+const shots = images.map((img) => ({ ...img, src: image("projects", img.file) }));
+const single = shots.length === 1;
 ---
 
-<div class="screens no-print">
+<div class:list={["screens", "no-print", { single }]}>
   <div class="grid">
     {
-      shots.map((s, i) => (
+      shots.map((s) => (
         <figure>
           <a href={s.src.src}>
             <Image
               src={s.src}
               alt={s.alt}
-              widths={[480, 800, 1280]}
-              sizes="(min-width: 56rem) 22rem, (min-width: 40rem) 45vw, 92vw"
-              loading={i === 0 ? "eager" : "lazy"}
+              widths={single ? [640, 960, 1400] : [480, 800, 1280]}
+              sizes={single ? "(min-width: 56rem) 38rem, 92vw" : "(min-width: 56rem) 22rem, (min-width: 40rem) 45vw, 92vw"}
+              loading="lazy"
             />
           </a>
-          <figcaption>{s.caption}</figcaption>
+          {s.caption && <figcaption>{s.caption}</figcaption>}
         </figure>
       ))
     }
   </div>
-  {labels.screenshotNote && <p class="note">{labels.screenshotNote}</p>}
+  {note && <p class="note">{note}</p>}
 </div>
 
 <style>
@@ -53,9 +46,14 @@ const shots = images.map((img) => {
   }
 
   @media (min-width: 40rem) {
-    .grid {
+    .screens:not(.single) .grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
+
+  /* A single figure (a chart) stays narrower than the Togethr pair. */
+  .single {
+    max-width: 38rem;
   }
 
   figure {

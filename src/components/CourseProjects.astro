@@ -1,5 +1,6 @@
 ---
 import Section from "./Section.astro";
+import ProjectScreens from "./ProjectScreens.astro";
 import { labels, resume } from "../lib/resume";
 ---
 
@@ -12,6 +13,7 @@ import { labels, resume } from "../lib/resume";
             <h3>{c.title}</h3>
             <p class="meta">{c.course}</p>
             <p class="desc">{c.description}</p>
+            {c.images && c.images.length > 0 && <ProjectScreens images={c.images} />}
           </article>
         </li>
       ))
@@ -37,6 +39,10 @@ import { labels, resume } from "../lib/resume";
 
   .desc {
     margin-top: 0.4rem;
+  }
+
+  article > :global(.screens) {
+    margin-top: 0.9rem;
   }
 
   @media print {

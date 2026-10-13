@@ -34,7 +34,7 @@ const meta = [project.context, project.period].filter(Boolean);
     )
   }
 
-  {project.images && project.images.length > 0 && <ProjectScreens images={project.images} />}
+  {project.images && project.images.length > 0 && <ProjectScreens images={project.images} note={project.imagesNote} />}
 
   <ul class="stack" aria-label={`${project.title} stack`}>
     {project.stack.map((s) => <li>{s}</li>)}

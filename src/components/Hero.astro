@@ -1,14 +1,32 @@
 ---
+import { Image } from "astro:assets";
 import { hasResumePdf, labels, resume } from "../lib/resume";
+import { image } from "../lib/images";
 
 const [first, ...rest] = resume.name.split(" ");
 const email = resume.contact.email;
+const headshot = resume.headshot && { ...resume.headshot, src: image("images", resume.headshot.file) };
 ---
 
 <section class="hero" aria-labelledby="name">
-  <h1 id="name">
-    {first} <span class="nick">“{resume.nickname}”</span> {rest.join(" ")}
-  </h1>
+  <div class="name-row">
+    {
+      headshot && (
+        <Image
+          class="avatar"
+          src={headshot.src}
+          alt={headshot.alt}
+          widths={[64, 128, 192]}
+          sizes="(min-width: 40rem) 5.25rem, 4rem"
+          loading="eager"
+          fetchpriority="high"
+        />
+      )
+    }
+    <h1 id="name">
+      {first} <span class="nick">“{resume.nickname}”</span> {rest.join(" ")}
+    </h1>
+  </div>
   <p class="headline">{resume.headline}<span class="sep" aria-hidden="true"> · </span><span class="loc">{resume.location}</span></p>
 
   <p class="availability"><span class="dot" aria-hidden="true"></span>{resume.availability}</p>
@@ -36,8 +54,30 @@ const email = resume.contact.email;
     padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(2rem, 5vw, 3rem);
   }
 
+  .name-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.9rem, 2.5vw, 1.4rem);
+  }
+
+  .avatar {
+    flex: none;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--rule);
+  }
+
+  @media (min-width: 40rem) {
+    .avatar {
+      width: 5.25rem;
+      height: 5.25rem;
+    }
+  }
+
   h1 {
-    font-size: clamp(2.25rem, 1.4rem + 4vw, 3.75rem);
+    font-size: clamp(2rem, 1.2rem + 3.6vw, 3.3rem);
     font-weight: 600;
     letter-spacing: -0.015em;
     line-height: 1.05;
@@ -123,6 +163,10 @@ const email = resume.contact.email;
 
     h1 {
       font-size: 20pt;
+    }
+
+    .avatar {
+      display: none;
     }
 
     .headline,

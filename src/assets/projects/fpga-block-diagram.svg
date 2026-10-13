@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <!-- Redrawn from the "Overall Design Block Diagram" in the final project report.
+       Same blocks, labels and connections; wires re-routed so nothing crosses text. -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1f2a37"/>
+    </marker>
+    <marker id="arrow-clk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8a4b12"/>
+    </marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #111; }
+      .dom { font-size: 13px; font-weight: 700; }
+      .box { fill: #fff; stroke: #1f2a37; stroke-width: 1.4; }
+      .name { font-size: 14px; font-weight: 700; fill: #111; }
+      .txt { font-size: 11px; fill: #222; }
+      .it { font-size: 11px; font-style: italic; fill: #44506a; }
+      .lbl { font-size: 10px; fill: #44506a; }
+      .clk { font-size: 10px; fill: #8a4b12; }
+      .wire { fill: none; stroke: #1f2a37; stroke-width: 1.4; }
+      .dash { fill: none; stroke: #1f2a37; stroke-width: 1.4; stroke-dasharray: 5 4; }
+      .clkw { fill: none; stroke: #8a4b12; stroke-width: 1.3; stroke-dasharray: 3 3; }
+    </style>
+  </defs>
+
+  <rect width="1100" height="620" fill="#ffffff"/>
+  <text x="550" y="30" text-anchor="middle" class="title">Real-Time Video Capture &amp; Processing — Top-Level Block Diagram</text>
+
+  <!-- Clock domains -->
+  <rect x="20" y="60" width="320" height="540" rx="6" fill="#fdf0c8" stroke="#e0a84a" stroke-dasharray="6 4"/>
+  <text x="180" y="80" text-anchor="middle" class="dom" fill="#8a4b12">100 MHz Domain (system / SCCB)</text>
+  <rect x="360" y="60" width="320" height="540" rx="6" fill="#dde9fb" stroke="#7d9ad8" stroke-dasharray="6 4"/>
+  <text x="520" y="80" text-anchor="middle" class="dom" fill="#1f3f86">cam_pclk ~12 MHz Domain</text>
+  <rect x="700" y="60" width="380" height="540" rx="6" fill="#ddf7e6" stroke="#6cbf86" stroke-dasharray="6 4"/>
+  <text x="890" y="80" text-anchor="middle" class="dom" fill="#1d6b3a">25 MHz Domain (VGA / filter)</text>
+
+  <!-- cam_ctrl -->
+  <rect x="60" y="130" width="240" height="120" rx="6" class="box"/>
+  <text x="180" y="156" text-anchor="middle" class="name">cam_ctrl</text>
+  <text x="180" y="178" text-anchor="middle" class="txt">ov7670_init (FSM, register ROM)</text>
+  <text x="180" y="195" text-anchor="middle" class="txt">+ sccb_master (200 kHz)</text>
+  <text x="180" y="221" text-anchor="middle" class="it">cam_rst_n, cam_pwdn,</text>
+  <text x="180" y="237" text-anchor="middle" class="it">SIO_C, SIO_D, cam_init_done</text>
+  <!-- clk100 into cam_ctrl, from below -->
+  <path d="M180 300 V253" class="clkw" marker-end="url(#arrow-clk)"/>
+  <text x="188" y="292" class="clk">clk100</text>
+
+  <!-- MMCM -->
+  <rect x="80" y="430" width="200" height="70" rx="6" class="box"/>
+  <text x="180" y="456" text-anchor="middle" class="name">MMCM</text>
+  <text x="180" y="478" text-anchor="middle" class="txt">100 MHz → 25 MHz</text>
+  <text x="180" y="528" text-anchor="middle" class="clk">(clk_25m feeds vga_sync, img_filter, BRAM read)</text>
+  <!-- clk_25m to the BRAM read port -->
+  <path d="M280 470 H377" class="clkw" marker-end="url(#arrow-clk)"/>
+  <text x="300" y="462" class="clk">clk_25m</text>
+
+  <!-- OV7670 camera -->
+  <rect x="380" y="110" width="160" height="70" rx="6" class="box"/>
+  <text x="460" y="138" text-anchor="middle" class="name">OV7670 Camera</text>
+  <text x="460" y="161" text-anchor="middle" class="txt">RGB565 stream</text>
+  <!-- SCCB: cam_ctrl to camera -->
+  <path d="M300 200 C 345 200, 345 145, 377 145" class="wire" marker-end="url(#arrow)"/>
+  <text x="366" y="200" class="lbl">SCCB (SIO_C/D)</text>
+  <text x="366" y="213" class="lbl">200 kHz</text>
+
+  <!-- pixel_capture -->
+  <rect x="400" y="280" width="240" height="100" rx="6" class="box"/>
+  <text x="520" y="306" text-anchor="middle" class="name">pixel_capture</text>
+  <text x="520" y="328" text-anchor="middle" class="txt">2-byte RGB565 assembler</text>
+  <text x="520" y="344" text-anchor="middle" class="txt">VSYNC/HREF edge detect</text>
+  <text x="520" y="360" text-anchor="middle" class="txt">RGB565 → RGB444 (12-bit)</text>
+  <!-- camera to pixel_capture -->
+  <path d="M460 180 L470 200 L520 255 V277" class="wire" marker-end="url(#arrow)"/>
+  <text x="540" y="216" class="lbl">PCLK, VSYNC,</text>
+  <text x="540" y="229" class="lbl">HREF, D[7:0]</text>
+  <text x="540" y="242" class="lbl">@ ~12 MHz</text>
+
+  <!-- frame_buffer -->
+  <rect x="380" y="430" width="340" height="120" rx="6" fill="#fdf6c4" stroke="#8a5a12" stroke-width="1.6"/>
+  <text x="550" y="456" text-anchor="middle" class="name">frame_buffer (BRAM, dual-port)</text>
+  <text x="550" y="479" text-anchor="middle" class="txt">320 × 240 × 12 bits = 900 Kbits</text>
+  <text x="550" y="497" text-anchor="middle" class="txt">Write port: cam_pclk · Read port: clk_25m</text>
+  <text x="550" y="517" text-anchor="middle" class="it" fill="#8a4b12" style="fill:#8a4b12">Clock-domain boundary</text>
+  <text x="550" y="534" text-anchor="middle" class="it" style="fill:#8a4b12">(asynchronous read/write)</text>
+  <!-- pixel_capture to frame_buffer -->
+  <path d="M520 380 V427" class="wire" marker-end="url(#arrow)"/>
+  <text x="528" y="401" class="lbl">we, waddr[16:0],</text>
+  <text x="528" y="414" class="lbl">wdata[11:0] @ ~6 MHz</text>
+
+  <!-- vga_sync -->
+  <rect x="740" y="130" width="280" height="100" rx="6" class="box"/>
+  <text x="880" y="156" text-anchor="middle" class="name">vga_sync</text>
+  <text x="880" y="178" text-anchor="middle" class="txt">640×480 @60Hz timing generator</text>
+  <text x="880" y="194" text-anchor="middle" class="txt">hsync / vsync / active</text>
+  <text x="880" y="210" text-anchor="middle" class="txt">col_addr (0–319), row_addr (0–239)</text>
+  <!-- rd_addr: vga_sync to the BRAM read port, routed left of img_filter -->
+  <path d="M740 205 H712 V427" class="dash" marker-end="url(#arrow)"/>
+  <text x="719" y="254" class="lbl">rd_addr</text>
+
+  <!-- img_filter -->
+  <rect x="740" y="270" width="280" height="100" rx="6" class="box"/>
+  <text x="880" y="296" text-anchor="middle" class="name">img_filter</text>
+  <text x="880" y="318" text-anchor="middle" class="txt">SW[1:0] → raw / grayscale /</text>
+  <text x="880" y="334" text-anchor="middle" class="txt">inversion / threshold</text>
+  <text x="880" y="354" text-anchor="middle" class="it">combinational, RGB444 → RGB444</text>
+  <!-- timing: vga_sync to img_filter -->
+  <path d="M880 230 V267" class="wire" marker-end="url(#arrow)"/>
+  <text x="893" y="252" class="lbl">timing</text>
+  <!-- rd_data: frame_buffer to img_filter -->
+  <path d="M720 500 H770 V373" class="wire" marker-end="url(#arrow)"/>
+  <text x="778" y="398" class="lbl">rd_data[11:0]</text>
+  <text x="778" y="411" class="lbl">@ 25 MHz</text>
+
+  <!-- VGA monitor -->
+  <rect x="800" y="430" width="160" height="70" rx="6" class="box"/>
+  <text x="880" y="456" text-anchor="middle" class="name">VGA monitor</text>
+  <text x="880" y="478" text-anchor="middle" class="txt">hsync/vsync + 12-bit RGB</text>
+  <!-- RGB444: img_filter to monitor -->
+  <path d="M880 370 V427" class="wire" marker-end="url(#arrow)"/>
+  <text x="893" y="402" class="lbl">RGB444</text>
+</svg>

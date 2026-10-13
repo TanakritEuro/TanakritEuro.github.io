@@ -18,8 +18,15 @@ All text on the site lives in **`content/resume.json`**. Components never contai
   it renders the "Built with Claude Code" label.
 - **Project links:** keys in `links` (`demo`, `repo`, `frontend`, `backend`) need a matching
   label in `site.labels`.
-- **Screenshots:** put the file in `src/assets/projects/` and list it under the project's
-  `images` with a `caption` and descriptive `alt`. Astro generates responsive WebP at build.
+- **Images** live under `src/assets/` (not `public/`) so Astro can resize them and serve
+  WebP. Every image needs a descriptive `alt`.
+  - `images` on a project or course project: figures with a `caption`; `imagesNote` adds a
+    small line under them (Togethr uses it to say the screenshots use sample data).
+  - `thumbnail` on a showcase project: the small picture on its card.
+  - `headshot`: the round photo in the hero, from `src/assets/images/`.
+    `headshot-original.jpg` is the uncropped photo; `headshot.jpg` is the square crop used.
+  - `fpga-block-diagram.svg` is the editable source of the FPGA diagram; re-export the PNG
+    after editing it.
 - **Resume PDF:** export from the resume doc and save as `public/resume.pdf`. The
   "Download resume (PDF)" button appears automatically once the file exists.
 - **Social preview image and touch icon:** after changing the name, headline or availability,
