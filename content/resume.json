@@ -170,7 +170,7 @@
       "tagline": "Visualizer for 10 pathfinding and sorting algorithms",
       "stack": ["TypeScript", "React"],
       "thumbnail": { "file": "algoviz.png", "alt": "AlgoViz after a breadth-first search through a generated maze, with the shortest path highlighted." },
-      "links": { "demo": "https://algoviz-tau.vercel.app/", "repo": "https://github.com/TanakritEuro/algoviz" }
+      "links": { "demo": "https://tanakriteuro.github.io/algoviz/", "repo": "https://github.com/TanakritEuro/algoviz" }
     },
     {
       "id": "ledger",
@@ -189,7 +189,7 @@
       "tagline": "Cellular-automata playground rendered as generative art",
       "stack": ["TypeScript"],
       "thumbnail": { "file": "automatalab.png", "alt": "AutomataLab drawing elementary cellular automaton Rule 30 from a single cell." },
-      "links": { "demo": "https://automatalab-opal.vercel.app", "repo": "https://github.com/TanakritEuro/AutomataLab" }
+      "links": { "demo": "https://tanakriteuro.github.io/AutomataLab/", "repo": "https://github.com/TanakritEuro/AutomataLab" }
     },
     {
       "id": "homebase",
