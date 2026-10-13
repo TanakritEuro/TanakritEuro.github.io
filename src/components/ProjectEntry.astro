@@ -1,0 +1,95 @@
+---
+import BuiltWith from "./BuiltWith.astro";
+import ProjectLinks from "./ProjectLinks.astro";
+import ProjectScreens from "./ProjectScreens.astro";
+import type { Project } from "../lib/resume";
+
+interface Props {
+  project: Project;
+  level?: 3 | 4;
+}
+
+const { project, level = 3 } = Astro.props;
+const Heading = `h${level}` as "h3" | "h4";
+const meta = [project.context, project.period].filter(Boolean);
+---
+
+<article class="entry" id={project.id}>
+  <header>
+    <div class="title-row">
+      <Heading class="title">{project.title}</Heading>
+      {project.builtWith && <BuiltWith tool={project.builtWith} />}
+    </div>
+    {project.tagline && <p class="tagline">{project.tagline}</p>}
+    {meta.length > 0 && <p class="meta">{meta.join(" · ")}</p>}
+  </header>
+
+  {
+    project.bullets && project.bullets.length > 0 && (
+      <ul class="bullets">
+        {project.bullets.map((b) => (
+          <li>{b}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  {project.images && project.images.length > 0 && <ProjectScreens images={project.images} />}
+
+  <ul class="stack" aria-label={`${project.title} stack`}>
+    {project.stack.map((s) => <li>{s}</li>)}
+  </ul>
+
+  <ProjectLinks project={project} />
+</article>
+
+<style>
+  .entry {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .entry + :global(.entry) {
+    margin-top: 2.25rem;
+  }
+
+  .title-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  h4.title {
+    font-size: 1.3rem;
+  }
+
+  .tagline {
+    margin-top: 0.2rem;
+    font-size: 1.0625rem;
+  }
+
+  @media print {
+    .entry {
+      gap: 0.3rem;
+    }
+
+    .entry + :global(.entry) {
+      margin-top: 0.7rem;
+    }
+
+    .title,
+    h4.title {
+      font-size: 11.5pt;
+    }
+
+    .tagline {
+      font-size: 9.5pt;
+      margin: 0;
+    }
+  }
+</style>

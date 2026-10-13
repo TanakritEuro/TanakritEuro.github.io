@@ -1,0 +1,11 @@
+---
+import { labels } from "../lib/resume";
+
+interface Props {
+  tool: string;
+}
+
+const { tool } = Astro.props;
+---
+
+<span class="badge">{labels.builtWith} {tool}</span>

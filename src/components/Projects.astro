@@ -1,0 +1,105 @@
+---
+import Section from "./Section.astro";
+import ProjectEntry from "./ProjectEntry.astro";
+import ShowcaseCard from "./ShowcaseCard.astro";
+import { labels, projectsBy, resume } from "../lib/resume";
+
+const own = projectsBy("own");
+const daily = projectsBy("daily-tool");
+const showcase = projectsBy("showcase");
+---
+
+<Section id="projects" title={labels.projects}>
+  {
+    own.length > 0 && (
+      <div class="group" aria-labelledby="team-project">
+        <h3 class="group-title" id="team-project">{labels.teamProject}</h3>
+        {own.map((p) => (
+          <ProjectEntry project={p} level={4} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    daily.length > 0 && (
+      <div class="group" aria-labelledby="daily-tools">
+        <h3 class="group-title" id="daily-tools">{labels.dailyTools}</h3>
+        {daily.map((p) => (
+          <ProjectEntry project={p} level={4} />
+        ))}
+      </div>
+    )
+  }
+
+  {
+    showcase.length > 0 && (
+      <div class="group" aria-labelledby="showcase">
+        <h3 class="group-title" id="showcase">{labels.showcase}</h3>
+        <p class="group-note">{resume.showcaseNote}</p>
+        <div class="grid">
+          {showcase.map((p) => (
+            <ShowcaseCard project={p} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+</Section>
+
+<style>
+  .group + .group {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px dashed var(--rule);
+  }
+
+  .group-title {
+    font-size: 1.05rem;
+    font-family: var(--sans);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+  }
+
+  .group-note {
+    margin: -0.75rem 0 1.25rem;
+    color: var(--muted);
+    max-width: var(--measure);
+  }
+
+  .grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 40rem) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media print {
+    .group + .group {
+      margin-top: 0.8rem;
+      padding-top: 0.5rem;
+    }
+
+    .group-title {
+      font-size: 10pt;
+      margin-bottom: 0.4rem;
+    }
+
+    .group-note {
+      margin: -0.3rem 0 0.4rem;
+      max-width: none;
+    }
+
+    .grid {
+      display: block;
+    }
+
+    .grid > :global(* + *) {
+      margin-top: 0.45rem;
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Projects from "../components/Projects.astro";
+import CourseProjects from "../components/CourseProjects.astro";
+import Education from "../components/Education.astro";
+import Skills from "../components/Skills.astro";
+import Footer from "../components/Footer.astro";
+import { labels } from "../lib/resume";
+---
+
+<Base>
+  <a class="skip-link" href="#main">{labels.skipLink}</a>
+  <Header />
+  <div class="wrap">
+    <main id="main" tabindex="-1">
+      <Hero />
+      <Projects />
+      <CourseProjects />
+      <Education />
+      <Skills />
+    </main>
+    <Footer />
+  </div>
+</Base>

@@ -1,0 +1,55 @@
+---
+import Section from "./Section.astro";
+import { labels, resume } from "../lib/resume";
+---
+
+<Section id="skills" title={labels.skills}>
+  <dl>
+    {
+      resume.skills.map((s) => (
+        <div class="row">
+          <dt>{s.group}</dt>
+          <dd>
+            <ul class="inline-list">
+              {s.items.map((i) => (
+                <li>{i}</li>
+              ))}
+            </ul>
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</Section>
+
+<style>
+  dl {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .row {
+    display: grid;
+    gap: 0.2rem 1.5rem;
+  }
+
+  dt {
+    font-weight: 600;
+  }
+
+  @media (min-width: 40rem) {
+    .row {
+      grid-template-columns: 9.5rem minmax(0, 1fr);
+    }
+  }
+
+  @media print {
+    dl {
+      gap: 0.25rem;
+    }
+
+    .row {
+      grid-template-columns: 8rem minmax(0, 1fr);
+    }
+  }
+</style>

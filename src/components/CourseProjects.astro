@@ -1,0 +1,65 @@
+---
+import Section from "./Section.astro";
+import { labels, resume } from "../lib/resume";
+---
+
+<Section id="course-projects" title={labels.courseProjects}>
+  <ul class="list">
+    {
+      resume.courseProjects.map((c) => (
+        <li>
+          <article>
+            <h3>{c.title}</h3>
+            <p class="meta">{c.course}</p>
+            <p class="desc">{c.description}</p>
+          </article>
+        </li>
+      ))
+    }
+  </ul>
+</Section>
+
+<style>
+  .list {
+    display: grid;
+    gap: 1.6rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .meta {
+    margin-top: 0.15rem;
+  }
+
+  .desc {
+    margin-top: 0.4rem;
+  }
+
+  @media print {
+    .list {
+      gap: 0.5rem;
+    }
+
+    h3 {
+      display: inline;
+      font-size: 10pt;
+    }
+
+    .meta {
+      display: inline;
+      margin: 0;
+    }
+
+    .meta::before {
+      content: " · ";
+    }
+
+    .desc {
+      margin-top: 0.1rem;
+    }
+  }
+</style>

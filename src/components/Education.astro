@@ -1,0 +1,83 @@
+---
+import Section from "./Section.astro";
+import { labels, resume } from "../lib/resume";
+---
+
+<Section id="education" title={labels.education}>
+  {
+    resume.education.map((e) => (
+      <article class="edu">
+        <h3>{e.school}</h3>
+        <p>
+          {e.degree}
+          <span class="meta"> · {e.location}</span>
+        </p>
+        <p class="meta">{e.period}</p>
+        <dl>
+          <div>
+            <dt>{labels.gpax}</dt>
+            <dd>{e.gpax}</dd>
+          </div>
+          <div>
+            <dt>{labels.coursework}</dt>
+            <dd>
+              <ul class="inline-list">
+                {e.coursework.map((c) => (
+                  <li>{c}</li>
+                ))}
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </article>
+    ))
+  }
+</Section>
+
+<style>
+  .edu + .edu {
+    margin-top: 2rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.35rem;
+  }
+
+  dl {
+    display: grid;
+    gap: 0.9rem;
+    margin-top: 1.1rem;
+  }
+
+  dt {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  @media print {
+    h3 {
+      font-size: 11.5pt;
+      margin: 0;
+    }
+
+    dl {
+      gap: 0.25rem;
+      margin-top: 0.3rem;
+    }
+
+    dl > div {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    dt {
+      font-size: 9.5pt;
+      flex: none;
+    }
+
+    dt::after {
+      content: ":";
+    }
+  }
+</style>

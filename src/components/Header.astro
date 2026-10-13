@@ -1,0 +1,76 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import { labels, resume } from "../lib/resume";
+
+const nav = [
+  { href: "/#projects", label: labels.projects },
+  { href: "/#education", label: labels.education },
+  { href: "/#skills", label: labels.skills },
+  { href: "/#contact", label: labels.contact },
+];
+---
+
+<header class="site-header no-print">
+  <div class="wrap bar">
+    <a class="home" href="/">{resume.name}</a>
+    <nav aria-label="Sections">
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    min-height: 3.5rem;
+  }
+
+  .home {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+    text-decoration: none;
+    margin-right: auto;
+    white-space: nowrap;
+  }
+
+  ul {
+    display: flex;
+    gap: 1.25rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9375rem;
+  }
+
+  nav a:hover {
+    color: var(--text);
+    text-decoration: underline;
+  }
+
+  /* On narrow screens the name and toggle are enough; sections are one scroll away. */
+  @media (max-width: 40rem) {
+    nav {
+      display: none;
+    }
+  }
+</style>

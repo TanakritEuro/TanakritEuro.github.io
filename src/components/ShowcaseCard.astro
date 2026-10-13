@@ -1,0 +1,83 @@
+---
+import BuiltWith from "./BuiltWith.astro";
+import ProjectLinks from "./ProjectLinks.astro";
+import type { Project } from "../lib/resume";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="card" id={project.id}>
+  <h4 class="title">{project.title}</h4>
+  {project.tagline && <p class="tagline">{project.tagline}</p>}
+  <ul class="stack" aria-label={`${project.title} stack`}>
+    {project.stack.map((s) => <li>{s}</li>)}
+  </ul>
+  <div class="foot">
+    <ProjectLinks project={project} />
+    {project.builtWith && <BuiltWith tool={project.builtWith} />}
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--surface);
+  }
+
+  .title {
+    font-size: 1.15rem;
+  }
+
+  .tagline {
+    font-size: 0.9688rem;
+  }
+
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-top: auto;
+    padding-top: 0.35rem;
+  }
+
+  @media print {
+    .card {
+      display: block;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+
+    .title {
+      display: inline;
+      font-size: 10pt;
+    }
+
+    .tagline {
+      display: inline;
+      font-size: 9.5pt;
+    }
+
+    .tagline::before {
+      content: " — ";
+    }
+
+    .stack,
+    .foot {
+      margin-top: 0.1rem;
+      padding: 0;
+      justify-content: flex-start;
+    }
+  }
+</style>

@@ -1,0 +1,48 @@
+---
+import type { Project } from "../lib/resume";
+import { labels } from "../lib/resume";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+// Each key in project.links needs a matching label in site.labels.
+const links = Object.entries(project.links).flatMap(([key, href]) =>
+  href ? [{ href, label: labels[key] ?? key, external: key === "demo" }] : [],
+);
+---
+
+{
+  links.length > 0 && (
+    <ul class="project-links">
+      {links.map((l) => (
+        <li>
+          <a href={l.href}>
+            {l.label}
+            <span class="sr-only">: {project.title}</span>
+            {l.external && <span aria-hidden="true"> ↗</span>}
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+<style>
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.1rem;
+    padding: 0;
+    list-style: none;
+    font-size: 0.9375rem;
+  }
+
+  /* In print the URL is shown instead of the arrow. */
+  @media print {
+    [aria-hidden="true"] {
+      display: none;
+    }
+  }
+</style>

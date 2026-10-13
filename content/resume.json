@@ -6,12 +6,47 @@
   "location": "Bangkok, Thailand",
   "availability": "Open to software engineering internships for 2027",
   "summary": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86) seeking a software engineering internship for 2027. Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), and practiced at directing AI coding agents to build and test tools I use every day.",
+  "siteSummary": "Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), GPAX 3.86, and practiced at directing AI coding agents to build and test tools I use every day.",
   "contact": {
     "email": "tanakrit.ro@gmail.com",
     "github": "https://github.com/TanakritEuro",
     "linkedin": "https://www.linkedin.com/in/tanakrit-roongtanapirom"
   },
   "resumePdf": "/resume.pdf",
+  "site": {
+    "_note": "Page title, meta description and interface labels. Wording only, no claims.",
+    "title": "Tanakrit (Euro) Roongtanapirom · Computer Engineering, Chulalongkorn University",
+    "description": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86), open to software engineering internships for 2027. Projects, coursework and skills.",
+    "labels": {
+      "skipLink": "Skip to content",
+      "themeToggle": "Switch between light and dark theme",
+      "projects": "Projects",
+      "teamProject": "Team project",
+      "dailyTools": "Tools I use daily",
+      "showcase": "More projects",
+      "courseProjects": "Course projects",
+      "education": "Education",
+      "skills": "Skills",
+      "contact": "Contact",
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "resumePdf": "Download resume (PDF)",
+      "builtWith": "Built with",
+      "demo": "Live demo",
+      "repo": "Source",
+      "frontend": "Frontend repo",
+      "screenshotNote": "Screenshots from a local run with the repo's sample data.",
+      "backend": "Backend repo",
+      "gpax": "GPAX",
+      "coursework": "Coursework",
+      "lastUpdated": "Last updated",
+      "siteCredit": "This site was built with Claude Code.",
+      "notFoundTitle": "Page not found",
+      "notFoundBody": "There is nothing at this address.",
+      "notFoundLink": "Go to the home page"
+    }
+  },
   "education": [
     {
       "school": "Chulalongkorn University",
@@ -42,7 +77,22 @@
       "context": "Software Engineering course · 8-person Scrum team",
       "period": "Aug 2026 – present",
       "stack": ["React", "Tailwind CSS", "Node.js", "Express", "Prisma", "PostgreSQL", "Jest", "Playwright"],
-      "links": {},
+      "links": {
+        "frontend": "https://github.com/meephuu/togethr-frontend",
+        "backend": "https://github.com/DiewKoyKid/DeawKoyKid-Backend"
+      },
+      "images": [
+        {
+          "file": "togethr-provider-dashboard.png",
+          "caption": "Provider dashboard",
+          "alt": "Togethr provider dashboard: counts of published services and bookings this month, a Create service button, and the provider's list of published services."
+        },
+        {
+          "file": "togethr-search.png",
+          "caption": "Search with filter panel",
+          "alt": "Togethr search page: a filter panel for provider gender, age, category and price beside a grid of matching service cards with prices per hour."
+        }
+      ],
       "bullets": [
         "Top contributor to both the frontend and backend repos in an 8-person Scrum team, working in sprints from a shared backlog.",
         "Built login by username or email and dual-role accounts, so one user can act as both customer and provider.",
@@ -55,7 +105,6 @@
       "group": "daily-tool",
       "builtWith": "Claude Code",
       "title": "Binance TH Portfolio Tracker",
-      "tagline": "Local dashboard for my own crypto account, used daily",
       "period": "2026",
       "stack": ["Node.js"],
       "links": {},
@@ -69,7 +118,6 @@
       "group": "daily-tool",
       "builtWith": "Claude Code",
       "title": "Crypto Trading Bot",
-      "tagline": "Rule-based bot with a staged, low-risk rollout",
       "period": "2026",
       "stack": ["Node.js"],
       "links": {},

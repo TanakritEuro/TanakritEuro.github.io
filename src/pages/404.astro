@@ -1,0 +1,24 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import { labels, resume } from "../lib/resume";
+---
+
+<Base title={`${labels.notFoundTitle} · ${resume.name}`} noindex>
+  <Header />
+  <main class="wrap" id="main">
+    <h1>{labels.notFoundTitle}</h1>
+    <p>{labels.notFoundBody} <a href="/">{labels.notFoundLink}</a>.</p>
+  </main>
+</Base>
+
+<style>
+  main {
+    padding-block: 5rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+</style>

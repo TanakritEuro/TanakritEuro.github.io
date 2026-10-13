@@ -1,0 +1,74 @@
+---
+import { labels, lastUpdated, resume } from "../lib/resume";
+
+const dateLabel = lastUpdated.toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "Asia/Bangkok",
+});
+const email = resume.contact.email;
+---
+
+<footer class="section footer" id="contact" aria-labelledby="contact-title">
+  <h2 class="section-title" id="contact-title">{labels.contact}</h2>
+  <div class="section-body">
+    <ul class="contact">
+      <li><span class="key">{labels.email}</span><a href={`mailto:${email}`}>{email}</a></li>
+      <li><span class="key">{labels.linkedin}</span><a href={resume.contact.linkedin}>{resume.contact.linkedin.replace(/^https:\/\/(www\.)?/, "")}</a></li>
+      <li><span class="key">{labels.github}</span><a href={resume.contact.github}>{resume.contact.github.replace(/^https:\/\//, "")}</a></li>
+    </ul>
+    <p class="small">
+      {labels.lastUpdated} <time datetime={lastUpdated.toISOString().slice(0, 10)}>{dateLabel}</time>.{" "}
+      {labels.siteCredit}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .contact {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 1rem;
+  }
+
+  .key {
+    min-width: 5.5rem;
+    color: var(--muted);
+  }
+
+  .small {
+    margin-top: 2rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+
+  /* The visible text already is the address, so skip the printed URL. */
+  @media print {
+    .contact a::after {
+      content: none !important;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.2rem 1.5rem;
+    }
+
+    .key {
+      min-width: 0;
+    }
+
+    .small {
+      margin-top: 0.5rem;
+      font-size: 8pt;
+    }
+  }
+</style>
