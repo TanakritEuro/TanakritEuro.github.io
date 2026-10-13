@@ -178,7 +178,7 @@
       "title": "homebase",
       "tagline": "Self-hosted personal dashboard",
       "stack": ["Python", "FastAPI", "SQLite", "htmx"],
-      "links": { "repo": "https://github.com/TanakritEuro/homebase" }
+      "links": {}
     }
   ],
   "showcaseNote": "Built with Claude Code: I specified the features, tested each build and fed back fixes.",
