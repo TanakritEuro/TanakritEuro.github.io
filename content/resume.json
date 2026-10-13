@@ -35,7 +35,10 @@
       "resumePdf": "Download resume (PDF)",
       "builtWith": "Built with",
       "demo": "Live demo",
-      "play": "Play it",
+      "playPenaltyShootout": "Play Penalty Shootout",
+      "playFiveASide": "Play Five-a-Side",
+      "repoPenaltyShootout": "Penalty Shootout source",
+      "repoFiveASide": "Five-a-Side source",
       "repo": "Source",
       "frontend": "Frontend repo",
       "backend": "Backend repo",
@@ -150,11 +153,13 @@
       "group": "showcase",
       "builtWith": "Claude Code",
       "title": "Penalty Shootout & Five-a-Side",
-      "tagline": "3D browser penalty shootout with WebRTC online play; Five-a-Side, with team AI, is in progress",
+      "tagline": "Two 3D browser football games with WebRTC online play: a penalty shootout, and five-a-side against a team AI",
       "stack": ["TypeScript", "Three.js", "Rapier"],
       "links": {
-        "play": "https://tanakriteuro.github.io/penalty-shootout/",
-        "repo": "https://github.com/TanakritEuro/penalty-shootout"
+        "playPenaltyShootout": "https://tanakriteuro.github.io/penalty-shootout/",
+        "playFiveASide": "https://tanakriteuro.github.io/five-a-side/",
+        "repoPenaltyShootout": "https://github.com/TanakritEuro/penalty-shootout",
+        "repoFiveASide": "https://github.com/TanakritEuro/five-a-side"
       }
     },
     {
@@ -227,7 +232,7 @@
     },
     {
       "title": "Ronaldo in the Box",
-      "course": "Programming Methodology",
+      "course": "Programming Methodology · team of two",
       "description": "JavaFX puzzle game where boxes nest inside each other, with unlimited undo built on a stack of move snapshots."
     }
   ],

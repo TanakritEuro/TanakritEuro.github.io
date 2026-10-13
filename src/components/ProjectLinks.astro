@@ -8,8 +8,13 @@ interface Props {
 
 const { project } = Astro.props;
 // Each key in project.links needs a matching label in site.labels.
+// demo and play* links go to a running app and get an arrow. Generic labels
+// ("Source", "Live demo") get the project title appended for screen readers.
+const generic = ["demo", "repo", "frontend", "backend"];
 const links = Object.entries(project.links).flatMap(([key, href]) =>
-  href ? [{ href, label: labels[key] ?? key, external: key === "demo" || key === "play" }] : [],
+  href
+    ? [{ href, label: labels[key] ?? key, external: key === "demo" || key.startsWith("play"), generic: generic.includes(key) }]
+    : [],
 );
 ---
 
@@ -20,7 +25,7 @@ const links = Object.entries(project.links).flatMap(([key, href]) =>
         <li>
           <a href={l.href}>
             {l.label}
-            <span class="sr-only">: {project.title}</span>
+            {l.generic && <span class="sr-only">: {project.title}</span>}
             {l.external && <span aria-hidden="true"> ↗</span>}
           </a>
         </li>

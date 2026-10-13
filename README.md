@@ -16,8 +16,9 @@ All text on the site lives in **`content/resume.json`**. Components never contai
 - **Projects** have a `group`: `own` (Team project), `daily-tool` (Tools I use daily) or
   `showcase` (More projects). Keep the `builtWith` field on anything built with Claude Code;
   it renders the "Built with Claude Code" label.
-- **Project links:** keys in `links` (`demo`, `play`, `repo`, `frontend`, `backend`) need a matching
-  label in `site.labels`.
+- **Project links:** each key in `links` (`demo`, `repo`, `frontend`, `backend`, or a specific
+  one like `playFiveASide`) needs a matching label in `site.labels`. Keys `demo` and `play…`
+  get a ↗ arrow.
 - **Images** live under `src/assets/` (not `public/`) so Astro can resize them and serve
   WebP. Every image needs a descriptive `alt`.
   - `images` on a project or course project: figures with a `caption`; `imagesNote` adds a
