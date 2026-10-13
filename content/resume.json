@@ -1,0 +1,170 @@
+{
+  "_note": "Single source of truth for the site. Mirrors the resume doc. Edit text here, never in components. Do not add claims that are not here.",
+  "name": "Tanakrit Roongtanapirom",
+  "nickname": "Euro",
+  "headline": "Computer Engineering student at Chulalongkorn University",
+  "location": "Bangkok, Thailand",
+  "availability": "Open to software engineering internships for 2027",
+  "summary": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86) seeking a software engineering internship for 2027. Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), and practiced at directing AI coding agents to build and test tools I use every day.",
+  "contact": {
+    "email": "tanakrit.ro@gmail.com",
+    "github": "https://github.com/TanakritEuro",
+    "linkedin": "https://www.linkedin.com/in/tanakrit-roongtanapirom"
+  },
+  "resumePdf": "/resume.pdf",
+  "education": [
+    {
+      "school": "Chulalongkorn University",
+      "location": "Bangkok",
+      "degree": "B.Eng. Computer Engineering",
+      "period": "Aug 2024 – May 2028 (expected)",
+      "gpax": "3.86 / 4.00 (through 2nd semester 2025)",
+      "coursework": [
+        "Data Structures",
+        "Algorithm Design",
+        "Operating Systems",
+        "Computer System Architecture",
+        "Database Systems",
+        "Digital Logic & Hardware Synthesis Lab",
+        "Discrete Structures",
+        "Computer Networks",
+        "Distributed Systems",
+        "Software Engineering"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "togethr",
+      "group": "own",
+      "title": "Togethr",
+      "tagline": "Travel companion matchmaking platform",
+      "context": "Software Engineering course · 8-person Scrum team",
+      "period": "Aug 2026 – present",
+      "stack": ["React", "Tailwind CSS", "Node.js", "Express", "Prisma", "PostgreSQL", "Jest", "Playwright"],
+      "links": {},
+      "bullets": [
+        "Top contributor to both the frontend and backend repos in an 8-person Scrum team, working in sprints from a shared backlog.",
+        "Built login by username or email and dual-role accounts, so one user can act as both customer and provider.",
+        "Built the provider dashboard, the create-service flow with cover photo upload, and a search filter panel whose filters sync to the URL.",
+        "Wrote the create-service REST API with Jest tests, and Playwright end-to-end tests for the login flow against a mocked API generated from the OpenAPI spec."
+      ]
+    },
+    {
+      "id": "binance-th-tracker",
+      "group": "daily-tool",
+      "builtWith": "Claude Code",
+      "title": "Binance TH Portfolio Tracker",
+      "tagline": "Local dashboard for my own crypto account, used daily",
+      "period": "2026",
+      "stack": ["Node.js"],
+      "links": {},
+      "bullets": [
+        "Directed Claude Code to build a local dashboard for my Binance TH account: holdings in THB, realized and unrealized P/L, and money- and time-weighted returns compared with holding BTC.",
+        "Wrote the requirements, tested each feature on my real account, and added Discord alerts, CSV export and automatic backups."
+      ]
+    },
+    {
+      "id": "trading-bot",
+      "group": "daily-tool",
+      "builtWith": "Claude Code",
+      "title": "Crypto Trading Bot",
+      "tagline": "Rule-based bot with a staged, low-risk rollout",
+      "period": "2026",
+      "stack": ["Node.js"],
+      "links": {},
+      "bullets": [
+        "Designed a staged rollout (backtest → paper trading → small capped live account) for four pairs on Binance TH; currently paper trading on a dedicated always-on PC.",
+        "Compared MA-crossover, RSI and Donchian strategies in backtests with fees, slippage and a walk-forward overfitting check, and chose MA 10/200 on 4-hour candles."
+      ]
+    },
+    {
+      "id": "gb-emu",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "gb-emu",
+      "tagline": "Game Boy / Game Boy Color emulator in Rust and WebAssembly, passing 96/100 Mooneye accuracy tests",
+      "stack": ["Rust", "WebAssembly"],
+      "links": { "demo": "https://tanakriteuro.github.io/gb-emu/", "repo": "https://github.com/TanakritEuro/gb-emu" }
+    },
+    {
+      "id": "football-games",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "Penalty Shootout & Five-a-Side",
+      "tagline": "3D browser football games with WebRTC online play and team AI",
+      "stack": ["TypeScript", "Three.js", "Rapier"],
+      "links": { "repo": "https://github.com/TanakritEuro/penalty-shootout" }
+    },
+    {
+      "id": "algoviz",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "AlgoViz",
+      "tagline": "Visualizer for 10 pathfinding and sorting algorithms",
+      "stack": ["TypeScript", "React"],
+      "links": { "demo": "https://algoviz-tau.vercel.app/", "repo": "https://github.com/TanakritEuro/algoviz" }
+    },
+    {
+      "id": "ledger",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "Ledger",
+      "tagline": "Crypto market and portfolio tracker",
+      "stack": ["Next.js", "Supabase"],
+      "links": { "demo": "https://ledger-crypto.vercel.app/", "repo": "https://github.com/TanakritEuro/crypto-tracker" }
+    },
+    {
+      "id": "automatalab",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "AutomataLab",
+      "tagline": "Cellular-automata playground rendered as generative art",
+      "stack": ["TypeScript"],
+      "links": { "demo": "https://automatalab-opal.vercel.app", "repo": "https://github.com/TanakritEuro/AutomataLab" }
+    },
+    {
+      "id": "homebase",
+      "group": "showcase",
+      "builtWith": "Claude Code",
+      "title": "homebase",
+      "tagline": "Self-hosted personal dashboard",
+      "stack": ["Python", "FastAPI", "SQLite", "htmx"],
+      "links": { "repo": "https://github.com/TanakritEuro/homebase" }
+    }
+  ],
+  "showcaseNote": "Built with Claude Code: I specified the features, tested each build and fed back fixes.",
+  "courseProjects": [
+    {
+      "title": "Real-time video capture on an FPGA",
+      "course": "Hardware Synthesis Lab · team of two",
+      "description": "In Verilog on a Basys 3 (Artix-7), configured an OV7670 camera through a hand-written SCCB (I²C-like) bus master, buffered frames in dual-port BRAM bridging the camera and VGA clock domains, and output 640×480 @ 60 Hz video with switchable greyscale, invert and threshold filters."
+    },
+    {
+      "title": "Linux kernel modules",
+      "course": "Operating Systems · team of three",
+      "description": "Wrote character-device and system-info kernel modules (CPU info, system info) in C on Ubuntu 22.04."
+    },
+    {
+      "title": "FUSE filesystem",
+      "course": "Operating Systems",
+      "description": "Implemented a user-space filesystem in Python against the FUSE interface."
+    },
+    {
+      "title": "Rubik's Race optimization",
+      "course": "Algorithm Design",
+      "description": "Wrote C++ search-based solvers for an NxN sliding-puzzle problem, run in parallel to improve output-only test cases."
+    },
+    {
+      "title": "Ronaldo in the Box",
+      "course": "Programming Methodology",
+      "description": "JavaFX puzzle game where boxes nest inside each other, with unlimited undo built on a stack of move snapshots."
+    }
+  ],
+  "skills": [
+    { "group": "Languages", "items": ["JavaScript", "Python", "C/C++", "Java", "SQL", "Verilog"] },
+    { "group": "Web & backend", "items": ["React", "Vite", "Tailwind CSS", "Node.js", "Express", "Prisma", "REST APIs (OpenAPI)", "JWT authentication"] },
+    { "group": "Databases", "items": ["PostgreSQL", "MongoDB"] },
+    { "group": "Testing & tools", "items": ["Jest", "Playwright", "Git/GitHub", "Docker", "Postman", "Linux (kernel modules, FUSE)", "Vivado (FPGA)", "Claude Code (AI-assisted development)"] }
+  ]
+}
