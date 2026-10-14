@@ -4,8 +4,8 @@
   "nickname": "Euro",
   "headline": "Computer Engineering student at Chulalongkorn University",
   "location": "Bangkok, Thailand",
-  "availability": "Open to software engineering internships for 2027",
-  "summary": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86) seeking a software engineering internship for 2027. Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), and practiced at directing AI coding agents to build and test tools I use every day.",
+  "availability": "Open to 2027 internships in software and computer engineering",
+  "summary": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86) seeking a software or computer engineering internship for 2027. Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), and practiced at directing AI coding agents to build and test tools I use every day.",
   "siteSummary": "Full-stack experience from an 8-person Scrum project (React, Express, PostgreSQL), GPAX 3.86, and practiced at directing AI coding agents to build and test tools I use every day.",
   "contact": {
     "email": "tanakrit.ro@gmail.com",
@@ -17,7 +17,7 @@
   "site": {
     "_note": "Page title, meta description and interface labels. Wording only, no claims.",
     "title": "Tanakrit (Euro) Roongtanapirom · Computer Engineering, Chulalongkorn University",
-    "description": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86), open to software engineering internships for 2027. Projects, coursework and skills.",
+    "description": "Third-year Computer Engineering student at Chulalongkorn University (GPAX 3.86), open to 2027 internships in software and computer engineering. Projects, coursework and skills.",
     "labels": {
       "skipLink": "Skip to content",
       "themeToggle": "Switch between light and dark theme",
