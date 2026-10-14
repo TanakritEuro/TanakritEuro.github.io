@@ -1,7 +1,8 @@
 # tanakriteuro.github.io — resume website
 
 Personal resume site for Tanakrit "Euro" Roongtanapirom, a third-year Computer Engineering
-student at Chulalongkorn University applying for software engineering internships (2027).
+student at Chulalongkorn University applying for 2027 internships in software and computer
+engineering.
 It replaces the old portfolio at https://portfolio-tanakriteuro.vercel.app (repo `../portfolio`).
 
 Live URL (once deployed): **https://tanakriteuro.github.io**
