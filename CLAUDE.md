@@ -17,6 +17,8 @@ evidence (Togethr, then the tools he uses daily). Everything else is one scroll 
 
 - All text on the site comes from `content/resume.json`. Never hardcode copy in components.
 - It mirrors the resume document. If something is missing or wrong, change the JSON, not the UI.
+- The site may be more detailed than the one-page `public/resume.pdf` (for example the full
+  coursework list), but must never claim anything the PDF doesn't support.
 - **Do not invent or embellish claims** (no made-up metrics, users, awards or roles). If a
   section would look thin, leave it thin and flag it to Euro rather than padding it.
 - Do **not** publish the phone number. Email and LinkedIn are the contact routes.
